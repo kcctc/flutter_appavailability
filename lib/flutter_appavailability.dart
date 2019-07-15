@@ -22,12 +22,14 @@ class AppAvailability {
   ///   "version_name": ""
   /// }
   static Future<Map<String, String>> checkAvailability(String uri) async {
-    print("changed");
     Map<String, dynamic> args = <String, dynamic>{};
     args.putIfAbsent('uri', () => uri);
 
     if (Platform.isAndroid) {
       Map<dynamic, dynamic> app = await _channel.invokeMethod("checkAvailability", args);
+      if (app == null) {
+        throw PlatformException(code: "", message: "App not found $uri");
+      }
       return {
         "app_name": app["app_name"],
         "package_name": app["package_name"],
