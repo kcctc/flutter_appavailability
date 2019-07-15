@@ -27,9 +27,6 @@ class AppAvailability {
 
     if (Platform.isAndroid) {
       Map<dynamic, dynamic> app = await _channel.invokeMethod("checkAvailability", args);
-      if (app == null) {
-        throw PlatformException(code: "", message: "App not found $uri");
-      }
       return {
         "app_name": app["app_name"],
         "package_name": app["package_name"],
