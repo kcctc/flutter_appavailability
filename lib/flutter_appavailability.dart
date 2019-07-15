@@ -22,6 +22,7 @@ class AppAvailability {
   ///   "version_name": ""
   /// }
   static Future<Map<String, String>> checkAvailability(String uri) async {
+    print("changed");
     Map<String, dynamic> args = <String, dynamic>{};
     args.putIfAbsent('uri', () => uri);
 
