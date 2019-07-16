@@ -29,24 +29,19 @@ class AppAvailability {
       Map<dynamic, dynamic> app ;
       
       try{
-         app = await _channel.invokeMethod("checkAvailability", args);
-
+        app = await _channel.invokeMethod("checkAvailability", args);
       } on PlatformException catch (e) {
         print(e);
         return null;
-        // return {
-        //   "has_error": "true",
-        // };
       }
-      if(app['app_name']!=null){
+
         return {
           "app_name": app["app_name"],
           "package_name": app["package_name"],
           "versionCode": app["versionCode"],
           "version_name": app["version_name"],
-          "has_error": "false",
         };
-      }
+      
 
     }
     else if (Platform.isIOS) {
