@@ -31,8 +31,9 @@ class AppAvailability {
         app  = await _channel.invokeMethod("checkAvailability", args);
 
       } on PlatformException catch (e) {
-            print(e);
-          }
+        print(e);
+        throw PlatformException(code: "", message: "App not found $uri");
+      }
       
       return {
         "app_name": app["app_name"],
