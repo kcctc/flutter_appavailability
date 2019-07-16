@@ -27,22 +27,19 @@ class AppAvailability {
 
     if (Platform.isAndroid) {
       Map<dynamic, dynamic> app ;
-      
       try{
         app = await _channel.invokeMethod("checkAvailability", args);
-      } on PlatformException catch (e) {
+      } 
+      on PlatformException catch (e) {
         print(e);
         return null;
       }
-
-        return {
-          "app_name": app["app_name"],
-          "package_name": app["package_name"],
-          "versionCode": app["versionCode"],
-          "version_name": app["version_name"],
-        };
-      
-
+      return {
+        "app_name": app["app_name"],
+        "package_name": app["package_name"],
+        "versionCode": app["versionCode"],
+        "version_name": app["version_name"],
+      };
     }
     else if (Platform.isIOS) {
       bool appAvailable = await _channel.invokeMethod("checkAvailability", args);
