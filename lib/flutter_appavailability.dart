@@ -33,6 +33,7 @@ class AppAvailability {
 
       } on PlatformException catch (e) {
         print(e);
+        return null;
         // return {
         //   "has_error": "true",
         // };
